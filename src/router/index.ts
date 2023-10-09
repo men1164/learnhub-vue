@@ -8,12 +8,15 @@ import ContentPage from '../pages/ContentPage.vue'
 
 const routes: RouteRecordSingleView[] = [
   {
+    name: 'Home',
     path: '/',
     component: HomePage,
   },
   {
-    path: '/content',
+    name: 'Content',
+    path: '/content/:id',
     component: ContentPage,
+    props: true, // * send :id as a props instead of using $route.params.id
   },
 ]
 

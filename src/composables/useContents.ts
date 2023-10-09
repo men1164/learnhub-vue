@@ -8,11 +8,7 @@ const useContents = () => {
 
   axios
     .get<ContentsDTO>('https://api.learnhub.thanayut.in.th/content')
-    .then((res) => {
-      console.log(res.data)
-      contents.value = res.data
-      console.log(contents.value)
-    })
+    .then((res) => (contents.value = res.data))
     .catch((err) => (error.value = err))
 
   return { contents, error }

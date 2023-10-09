@@ -1,5 +1,28 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import YouTube from 'vue3-youtube'
+import useContent from '../composables/useContent'
 
-<template lang="">
-  <div>Content Page</div>
+const props = defineProps<{ id: string }>()
+
+const { content, error } = useContent(props.id)
+</script>
+
+<template>
+  <div v-if="!content">Loading...</div>
+  <div
+    v-if="content"
+    class="flex flex-col justify-center items-center gap-4 text-center mx-auto my-20 max-w-3xl bg-gray-100 shadow-lg p-8 rounded-xl"
+  >
+    <p class="text-3xl font-bold text-orange-500">
+      {{ content.videoTitle }}
+    </p>
+    <p class="text-xl text-gray-600">{{ content.creatorName }}</p>
+    <YouTube :src="content.videoUrl" />
+    <p class="text-xl text-gray-600">{{ content.comment }}</p>
+    <p class="text-xl text-gray-600">by {{ content.postedBy.name }}</p>
+    <p class="text-xl text-gray-600">Rating: {{ content.rating }}</p>
+  </div>
+  <div v-else-if="error" class="text-center mt-5 text-red-500 font-bold">
+    {{ error }}
+  </div>
 </template>
