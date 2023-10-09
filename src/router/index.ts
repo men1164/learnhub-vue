@@ -12,8 +12,9 @@ const routes: RouteRecordSingleView[] = [
     component: HomePage,
   },
   {
-    path: '/content',
+    path: '/content/:id',
     component: ContentPage,
+    props: true, // * send :id as a props instead of using $route.params.id
   },
 ]
 
