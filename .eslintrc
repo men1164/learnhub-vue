@@ -12,7 +12,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:vue/vue3-recommended"
+    "plugin:vue/vue3-recommended",
+    "prettier"
   ],
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
@@ -20,9 +21,18 @@
     "sourceType": "module"
   },
   "overrides": [],
-  "plugins": ["@typescript-eslint", "unused-imports"],
+  "plugins": ["@typescript-eslint", "unused-imports", "prettier"],
   "rules": {
     "no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "error"
+    "unused-imports/no-unused-imports": "error",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "trailingComma": "all",
+        "endOfLine": "auto",
+        "semi": false
+      }
+    ]
   }
 }
