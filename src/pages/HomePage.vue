@@ -8,6 +8,7 @@ const { contents, error } = useContents()
 
 <template>
   <BannerComp />
+  <div v-if="!contents">Loading...</div>
   <div v-if="error" class="text-center mt-5 text-red-500 font-bold">
     {{ error }}
   </div>
