@@ -2,7 +2,11 @@
 import { ContentsDTO } from '../types/dto'
 import ContentCard from './ContentCard.vue'
 
-defineProps<{ contents: ContentsDTO }>()
+interface IContentListProps {
+  contents: ContentsDTO
+}
+
+defineProps<IContentListProps>()
 </script>
 
 <template>
