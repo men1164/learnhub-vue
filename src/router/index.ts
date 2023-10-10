@@ -8,6 +8,7 @@ import ContentPage from '../pages/ContentPage.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import RegisterPageVue from '../pages/RegisterPage.vue'
 import CreatePageVue from '../pages/CreatePage.vue'
+import EditPageVue from '../pages/EditPage.vue'
 
 const routes: RouteRecordSingleView[] = [
   {
@@ -29,6 +30,12 @@ const routes: RouteRecordSingleView[] = [
     name: 'Create',
     path: '/create',
     component: CreatePageVue,
+  },
+  {
+    name: 'Edit',
+    path: '/edit/:id',
+    component: EditPageVue,
+    props: true, // * send :id as a props instead of using $route.params.id
   },
   {
     name: 'Content',
