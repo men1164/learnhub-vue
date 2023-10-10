@@ -2,6 +2,11 @@
 import BannerComp from '../components/BannerComp.vue'
 import ContentList from '../components/ContentList.vue'
 import useContents from '../composables/useContents'
+import useAuthStore from '../stores/useAuthStore'
+
+const store = useAuthStore()
+
+console.log('Home', store.isLoggedIn, store.username)
 
 const { contents, error } = useContents()
 </script>

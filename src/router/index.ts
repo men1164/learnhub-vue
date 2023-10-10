@@ -5,12 +5,18 @@ import {
 } from 'vue-router'
 import HomePage from '../pages/HomePage.vue'
 import ContentPage from '../pages/ContentPage.vue'
+import LoginPage from '../pages/LoginPage.vue'
 
 const routes: RouteRecordSingleView[] = [
   {
     name: 'Home',
     path: '/',
     component: HomePage,
+  },
+  {
+    name: 'Login',
+    path: '/login',
+    component: LoginPage,
   },
   {
     name: 'Content',
