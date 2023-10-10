@@ -8,7 +8,7 @@ const store = useAuthStore()
   <div
     class="flex justify-between items-center w-full bg-orange-200/50 h-auto px-8 py-5"
   >
-    <div class="flex text-orange-500 items-center gap-x-2">
+    <router-link to="/" class="flex text-orange-500 items-center gap-x-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -24,7 +24,7 @@ const store = useAuthStore()
         />
       </svg>
       <p class="font-bold text-5xl">LearnHub</p>
-    </div>
+    </router-link>
 
     <div class="flex items-center gap-8">
       <router-link
@@ -34,12 +34,13 @@ const store = useAuthStore()
       >
         Log In
       </router-link>
-      <div
+      <router-link
         v-if="!store.isLoggedIn"
+        to="/register"
         class="text-orange-500 font-semibold text-lg"
       >
         Register
-      </div>
+      </router-link>
       <button
         v-if="store.isLoggedIn"
         class="text-orange-500 font-semibold text-lg"
