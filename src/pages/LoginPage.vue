@@ -17,7 +17,7 @@ const handleSubmit = async (e: Event) => {
     toast.success('Login Sucessful!')
     router.push('/')
   } catch (err) {
-    if (err instanceof Error) console.log(err.message)
+    if (err instanceof Error) toast.error(err.message)
   }
 }
 </script>
