@@ -2,11 +2,35 @@
 import YouTube from 'vue3-youtube'
 import useContent from '../composables/useContent'
 import useAuthStore from '../stores/useAuthStore'
+import router from '../router'
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue'
+import { createVNode } from 'vue'
+import { Modal } from 'ant-design-vue'
+import { useToast } from 'vue-toastification'
 
 const props = defineProps<{ id: string }>()
 const store = useAuthStore()
+const toast = useToast()
 
-const { content, error } = useContent(props.id)
+const { content, error, deleteContent } = useContent(props.id)
+
+const showConfirm = () => {
+  Modal.confirm({
+    title: 'Do you want to delete this content?',
+    icon: createVNode(ExclamationCircleOutlined),
+    content: 'You cannot undo this action.',
+    async onOk() {
+      try {
+        await deleteContent()
+
+        toast.success('Delete Successful')
+        router.push('/')
+      } catch (err) {
+        if (err instanceof Error) toast.error(err.message)
+      }
+    },
+  })
+}
 </script>
 
 <template>
@@ -23,13 +47,20 @@ const { content, error } = useContent(props.id)
     <p class="text-xl text-gray-600">{{ content.comment }}</p>
     <p class="text-xl text-gray-600">by {{ content.postedBy.name }}</p>
     <p class="text-xl text-gray-600">Rating: {{ content.rating }}</p>
-    <router-link
+    <div
       v-if="content.postedBy.username === store.username"
-      class="text-orange-500 font-semibold"
-      :to="{ name: 'Edit', params: { id: content.id } }"
+      class="flex items-center gap-x-12"
     >
-      Edit
-    </router-link>
+      <router-link
+        class="text-orange-500 font-semibold"
+        :to="{ name: 'Edit', params: { id: content.id } }"
+      >
+        Edit
+      </router-link>
+      <button class="text-red-500 font-semibold" @click="showConfirm">
+        Delete
+      </button>
+    </div>
   </div>
   <div v-else-if="error" class="text-center mt-5 text-red-500 font-bold">
     {{ error }}
