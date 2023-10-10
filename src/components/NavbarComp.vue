@@ -41,6 +41,9 @@ const store = useAuthStore()
       >
         Register
       </router-link>
+      <p v-if="store.isLoggedIn" class="text-orange-500 font-semibold text-lg">
+        Welcome, {{ store.username }}!
+      </p>
       <button
         v-if="store.isLoggedIn"
         class="text-orange-500 font-semibold text-lg"
