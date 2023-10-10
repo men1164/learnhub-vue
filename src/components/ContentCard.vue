@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { ContentDTO } from '../types/dto'
 
-defineProps<{ content: ContentDTO }>()
+interface IContentCardProps {
+  content: ContentDTO
+}
+
+defineProps<IContentCardProps>()
 </script>
 
 <template lang="">

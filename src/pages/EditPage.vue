@@ -4,7 +4,11 @@ import useContent from '../composables/useContent'
 import { useToast } from 'vue-toastification'
 import router from '../router'
 
-const props = defineProps<{ id: string }>()
+interface IEditPageProps {
+  id: string
+}
+
+const props = defineProps<IEditPageProps>()
 
 const { content, editContent } = useContent(props.id)
 const toast = useToast()

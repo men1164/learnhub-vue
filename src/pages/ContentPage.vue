@@ -8,7 +8,11 @@ import { createVNode } from 'vue'
 import { Modal } from 'ant-design-vue'
 import { useToast } from 'vue-toastification'
 
-const props = defineProps<{ id: string }>()
+interface IContentPageProps {
+  id: string
+}
+
+const props = defineProps<IContentPageProps>()
 const store = useAuthStore()
 const toast = useToast()
 
