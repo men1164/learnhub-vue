@@ -16,12 +16,13 @@ const { contents, error } = useContents()
     {{ error }}
   </div>
   <div v-else-if="contents" class="flex flex-col items-end mx-32 my-9">
-    <div
+    <router-link
       v-if="store.isLoggedIn"
+      to="/create"
       class="bg-orange-500 p-3 rounded-lg text-white hover:bg-orange-600 text-lg"
     >
       Create New Content
-    </div>
+    </router-link>
     <ContentList :contents="contents" />
   </div>
 </template>
