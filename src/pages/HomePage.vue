@@ -2,6 +2,9 @@
 import BannerComp from '../components/BannerComp.vue'
 import ContentList from '../components/ContentList.vue'
 import useContents from '../composables/useContents'
+import useAuthStore from '../stores/useAuthStore'
+
+const store = useAuthStore()
 
 const { contents, error } = useContents()
 </script>
@@ -14,6 +17,7 @@ const { contents, error } = useContents()
   </div>
   <div v-else-if="contents" class="flex flex-col items-end mx-32 my-9">
     <div
+      v-if="store.isLoggedIn"
       class="bg-orange-500 p-3 rounded-lg text-white hover:bg-orange-600 text-lg"
     >
       Create New Content
