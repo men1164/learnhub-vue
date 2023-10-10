@@ -1,4 +1,9 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import useAuthStore from '../stores/useAuthStore'
+
+const store = useAuthStore()
+</script>
+
 <template>
   <div
     class="flex justify-between items-center w-full bg-orange-200/50 h-auto px-8 py-5"
@@ -22,12 +27,26 @@
     </div>
 
     <div class="flex items-center gap-8">
-      <router-link to="/login" class="text-orange-500 font-semibold text-lg">
+      <router-link
+        v-if="!store.isLoggedIn"
+        to="/login"
+        class="text-orange-500 font-semibold text-lg"
+      >
         Log In
       </router-link>
-      <div to="/register" class="text-orange-500 font-semibold text-lg">
+      <div
+        v-if="!store.isLoggedIn"
+        class="text-orange-500 font-semibold text-lg"
+      >
         Register
       </div>
+      <button
+        v-if="store.isLoggedIn"
+        class="text-orange-500 font-semibold text-lg"
+        @click="store.logout"
+      >
+        Logout
+      </button>
     </div>
   </div>
 </template>

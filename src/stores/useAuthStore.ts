@@ -22,6 +22,8 @@ const useAuthStore = defineStore('auth', () => {
         },
       )
 
+      isLoggedIn.value = true
+      username.value = loginBody.username
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('user', loginBody.username)
     } catch (err) {
@@ -29,7 +31,13 @@ const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  return { isLoggedIn, username, login }
+  const logout = () => {
+    localStorage.clear()
+    isLoggedIn.value = false
+    username.value = null
+  }
+
+  return { isLoggedIn, username, login, logout }
 })
 
 export default useAuthStore

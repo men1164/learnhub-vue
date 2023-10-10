@@ -6,8 +6,6 @@ import useAuthStore from '../stores/useAuthStore'
 
 const store = useAuthStore()
 
-console.log('Home', store.isLoggedIn, store.username)
-
 const { contents, error } = useContents()
 </script>
 
@@ -19,6 +17,7 @@ const { contents, error } = useContents()
   </div>
   <div v-else-if="contents" class="flex flex-col items-end mx-32 my-9">
     <div
+      v-if="store.isLoggedIn"
       class="bg-orange-500 p-3 rounded-lg text-white hover:bg-orange-600 text-lg"
     >
       Create New Content
